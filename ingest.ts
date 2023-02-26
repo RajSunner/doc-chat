@@ -52,7 +52,7 @@ class ReadTheDocsLoader extends BaseDocumentLoader {
   }
 }
 
-const directoryPath = 'langchain.readthedocs.io';
+const directoryPath = 'where the website docs are stored';
 const loader = new ReadTheDocsLoader(directoryPath);
 
 
@@ -69,7 +69,7 @@ export const run = async () => {
 
   console.log("Creating vector store...");
   /* Create the vectorstore */
-  const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings());
+  const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings({openAIApiKey:""}));
   vectorStore.save("data")
 }
 
