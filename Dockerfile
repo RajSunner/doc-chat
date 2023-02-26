@@ -12,10 +12,10 @@ RUN pip3 install --no-cache --upgrade pip setuptools
 
 WORKDIR /app
 COPY . .
-RUN yarn install --frozen-lockfile
+# RUN yarn install --frozen-lockfile
 
 # If using npm with a `package-lock.json` comment out above and use below instead
-# RUN npm ci
+RUN npm ci
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
@@ -24,10 +24,10 @@ ENV NEXT_TELEMETRY_DISABLED 1
 # Example:
 # ARG NEXT_PUBLIC_EXAMPLE="value here"
 
-RUN yarn build
+# RUN yarn build
 
 # If using npm comment out above and use below instead
-# RUN npm run build
+RUN npm run build
 
 # Production image, copy all the files and run next
 FROM node:16-alpine AS runner
@@ -43,7 +43,7 @@ COPY --from=builder /app ./
 
 USER nextjs
 
-CMD ["yarn", "start"]
+# CMD ["yarn", "start"]
 
 # If using npm comment out above and use below instead
-# CMD ["npm", "run", "start"]
+CMD ["npm", "run", "start"]
